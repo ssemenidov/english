@@ -1,0 +1,49 @@
+@import "vars.scss";
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  max-width: 425px;
+  height: 100vh;
+  max-height: 812px;
+  margin: auto auto;
+  font-family: Arial, sans-serif;
+  background: $weat;
+}
+button {
+  border: none;
+  color: inherit;
+  background: none;
+}
+:focus {
+  outline: none;
+}
+li,
+ul {
+  list-style: none;
+}
+
+.show {
+  z-index: 10 !important;
+  animation: show 0.5s ease-in-out forwards;
+}
+.hidden {
+  opacity: 0 !important;
+  display: none !important;
+  transition: opacity 0.5s ease-in-out;
+}
+.container {
+  margin: 0 auto;
+  width: 85%;
+  height: inherit;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
