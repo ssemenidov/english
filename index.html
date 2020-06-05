@@ -58,9 +58,23 @@
         
       </div>
     </section>
-    <section class="test hidden"></section>
+    <section class="test hidden">
+      <div class="test-page">
+        <div class="container container--main">
+          
+          <div class="test-content">
+            <div class="test-word">Word</div>
+            <ul class="test-list">
+              <li class="test-item">перевод</li>
+              <li class="test-item">перевод</li>
+              <li class="test-item">перевод</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="main hidden">
-      <div class="container">
+      <div class="container container--main">
         <div class="main-content">
           <ul class="main-topics">
             <li class="main-topic noun">
@@ -119,7 +133,7 @@
 </div>
     </section>
     <section class="profile hidden">
-      <div class="container">
+      <div class="container container--main">
         <div class="profile-content">
         <input type="text" class="profile-input name" maxlength="512" value="Имя" onfocus="this.value=''">
         <button class="profile-btn">Ок</button>
@@ -128,15 +142,15 @@
     </section>
     <footer class="footer hidden">
       <ul class="footer-list">
-        <li class="footer-item" id="test">
-          <button class="footer-btn">
+        <li class="footer-item" >
+          <button class="footer-btn" id="test">
             <img src="img/test.svg" alt="test">
           <div class="footer-title">тест</div>
           </button>
           
         </li>
         <li class="footer-item">
-          <button href="#" class="footer-btn" id="home">
+          <button href="#" class="footer-btn footer-active" id="home">
           <img src="img/home.svg" alt="home">
           <div class="footer-title">главная</div>
         </button>

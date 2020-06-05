@@ -40,6 +40,10 @@ ul {
   width: 85%;
   height: inherit;
 }
+.container--main {
+  padding: 13vh 0;
+  box-sizing: border-box;
+}
 
 @keyframes show {
   from {

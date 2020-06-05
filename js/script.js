@@ -11,6 +11,17 @@ $(document).ready(function () {
     dotsClass: "preview-dots",
   });
 });
+$(document).ready(function () {
+  $(".test-slider").slick({
+    dots: true,
+    arrows: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: false,
+    swipeToSlide: true,
+    dotsClass: "test-dots",
+  });
+});
 function test() {
   (this.right = 0),
     (this.answers = ["answer", "answer", "answer"]),
