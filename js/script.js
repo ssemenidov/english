@@ -28,15 +28,19 @@ let open_page = main;
 let profile_btn = document.querySelector(".profile-btn");
 let profile_input = document.querySelector(".profile-input");
 let name = document.querySelector(".name");
+function view(obj) {
+  obj.classList.add("show");
+  obj.classList.remove("hidden");
+}
+function unview(obj) {
+  obj.classList.remove("show");
+  obj.classList.add("hidden");
+}
 function prevmain() {
-  footer.classList.add("show");
-  footer.classList.remove("hidden");
-  header.classList.add("show");
-  header.classList.remove("hidden");
-  main.classList.add("show");
-  main.classList.remove("hidden");
-  preview.classList.remove("show");
-  preview.classList.add("hidden");
+  view(footer);
+  view(header);
+  view(main);
+  unview(preview);
 }
 previewNextList[previewEndList.length - 1].addEventListener("click", () => {
   prevmain();
@@ -48,34 +52,25 @@ for (let previewend of previewEndList) {
 }
 test_btn.addEventListener("click", () => {
   open_btn = test_btn;
-  open_page.classList.remove("show");
-  open_page.classList.add("hidden");
+  unview(open_page);
   open_page = test;
-  open_page.classList.add("show");
-  open_page.classList.remove("hidden");
-  header.classList.add("show");
-  header.classList.remove("hidden");
+  view(open_page);
+  view(header);
 });
 
 home_btn.addEventListener("click", () => {
   open_btn = home_btn;
-  open_page.classList.remove("show");
-  open_page.classList.add("hidden");
+  unview(open_page);
   open_page = main;
-  open_page.classList.add("show");
-  open_page.classList.remove("hidden");
-  header.classList.add("show");
-  header.classList.remove("hidden");
+  view(open_page);
+  view(header);
 });
 prof_btn.addEventListener("click", () => {
   open_btn = prof_btn;
-  open_page.classList.remove("show");
-  open_page.classList.add("hidden");
+  unview(open_page);
   open_page = prof;
-  open_page.classList.add("show");
-  open_page.classList.remove("hidden");
-  header.classList.remove("show");
-  header.classList.add("hidden");
+  view(open_page);
+  unview(header);
 });
 profile_btn.addEventListener("click", () => {
   name.innerHTML = profile_input.value;
