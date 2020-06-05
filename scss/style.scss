@@ -2,46 +2,48 @@
 @import "basics.scss";
 @import "preview.scss";
 @import "footer.scss";
+@import "main.scss";
 @import "header.scss";
-
-.main {
+.profile {
   height: 100%;
-  //opacity: 0;
-  display: flex;
   &-content {
-    display: flex;
     height: 100%;
-  }
-  &-topics {
-    height: 80%;
-    width: 100%;
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: auto;
-  }
-  &-topic {
-    max-height: 120px;
-    height: 25%;
-    width: 239px;
-    background: #ff7777;
-    border-radius: 24px;
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
-    font-size: 26px;
+    justify-content: center;
+    flex-direction: column;
+  }
+  &-input {
+    max-width: 100%;
+    color: $blue;
+    border: none;
+    background: none;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 900;
     letter-spacing: 0.16em;
-    color: $weat;
+    padding: 0.5em 1.5em;
+    border-radius: 17px;
+    box-sizing: border-box;
   }
-
-  &-topic:nth-of-type(2) {
-    align-self: flex-end;
-    justify-content: flex-start;
+  &-input::placeholder {
+    color: $blue;
   }
-}
-.topic {
-  &-title {
-    padding: 0 2em;
+  &-input:active {
+    border: 3px $blue solid;
+  }
+  &-btn {
+    margin-top: 109px;
+    background-color: $blue;
+    color: #fff176;
+    font-weight: 900;
+    font-size: 25px;
+    box-shadow: 0px 4px 12px rgba(228, 221, 150, 0.7);
+    border-radius: 17px;
+    width: 136px;
+    height: 52px;
+  }
+  &-btn:active {
+    box-shadow: none;
   }
 }

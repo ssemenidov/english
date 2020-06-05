@@ -2,11 +2,12 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 body {
   max-width: 425px;
   height: 100vh;
-  max-height: 812px;
+
   margin: auto auto;
   font-family: Arial, sans-serif;
   background: $weat;

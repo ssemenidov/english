@@ -13,7 +13,7 @@
   </head>
   <body>
     <header class="header hidden">
-      <div class="header-name">Имя</div>
+      <div class="header-name name">Имя</div>
     </header>
     <section class="preview show ">
       <div class="preview-slider">
@@ -62,29 +62,43 @@
     <section class="main hidden">
       <div class="container">
         <div class="main-content">
-<ul class="main-topics">
-  <li class="main-topic topic-noun">
-    <div class="topic-title">сущ.</div>
-    
-  </li>
-  <li class="main-topic topic-noun">
-    <div class="topic-title">глаг.</div>
-    
-  </li>
-  <li class="main-topic topic-noun">
-    <div class="topic-title">прил.</div>
-    
-  </li>
+          <ul class="main-topics">
+            <li class="main-topic noun">
+              <div class="topic-title">сущ.</div>
+              
+            </li>
+            <li class="main-topic verb">
+              <div class="topic-title">глаг.</div>
+              
+            </li>
+            <li class="main-topic adj">
+              <div class="topic-title">прил.</div>
+              
+            </li>
   
 
   
-</ul>
+          </ul>
+          <ul class="main-tests noun hidden">
+              <li class="main-test">test</li>
+              <li class="main-test"></li>
+              <li class="main-test"></li>
+              <li class="main-test"></li>
+              <li class="main-test"></li>
+              <li class="main-test"></li>
+              <li class="main-test"></li>
+              <li class="main-test"></li>
+          </ul>
 </div>
 </div>
     </section>
     <section class="profile hidden">
-      <input type="text" class="profile-input" placeholder="Имя">
-      <button class="profile-btn"></button>
+      <div class="container">
+        <div class="profile-content">
+        <input type="text" class="profile-input" maxlength="512" value="Имя">
+        <button class="profile-btn">Ок</button>
+        </div>
+      </div> 
     </section>
     <footer class="footer hidden">
       <ul class="footer-list">

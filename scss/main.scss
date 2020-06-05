@@ -1,0 +1,51 @@
+@import "vars.scss";
+.noun {
+  background: #ff7777;
+  color: $weat;
+}
+.verb {
+  background: #89f29a;
+  color: #13aaff;
+}
+.adj {
+  background: #86d1fb;
+  color: $weat;
+}
+.main {
+  min-height: 100%;
+  //opacity: 0;
+  display: flex;
+  &-content {
+    display: flex;
+    min-height: 100%;
+  }
+  &-topics {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 11vh 0;
+  }
+  &-topic {
+    max-height: 120px;
+    height: 20vh;
+    width: 239px;
+
+    border-radius: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 26px;
+    letter-spacing: 0.16em;
+  }
+  &-topic:nth-of-type(2) {
+    align-self: flex-end;
+    justify-content: flex-start;
+  }
+}
+.topic {
+  &-title {
+    padding: 0 2em;
+  }
+}

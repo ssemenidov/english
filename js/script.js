@@ -25,6 +25,9 @@ let test_btn = document.getElementById("test");
 let prof_btn = document.getElementById("profile");
 let open_btn = home_btn;
 let open_page = main;
+let profile_btn = document.querySelector(".profile-btn");
+let profile_input = document.querySelector(".profile-input");
+let name = document.querySelector(".name");
 function prevmain() {
   footer.classList.add("show");
   footer.classList.remove("hidden");
@@ -50,6 +53,8 @@ test_btn.addEventListener("click", () => {
   open_page = test;
   open_page.classList.add("show");
   open_page.classList.remove("hidden");
+  header.classList.add("show");
+  header.classList.remove("hidden");
 });
 
 home_btn.addEventListener("click", () => {
@@ -59,6 +64,8 @@ home_btn.addEventListener("click", () => {
   open_page = main;
   open_page.classList.add("show");
   open_page.classList.remove("hidden");
+  header.classList.add("show");
+  header.classList.remove("hidden");
 });
 prof_btn.addEventListener("click", () => {
   open_btn = prof_btn;
@@ -67,4 +74,10 @@ prof_btn.addEventListener("click", () => {
   open_page = prof;
   open_page.classList.add("show");
   open_page.classList.remove("hidden");
+  header.classList.remove("show");
+  header.classList.add("hidden");
+});
+profile_btn.addEventListener("click", () => {
+  name.innerHTML = profile_input.value;
+  name;
 });
