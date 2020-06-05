@@ -17,14 +17,14 @@
     font-size: 25px;
     font-weight: 900;
     letter-spacing: 0.16em;
-    padding: 0.5em 1.5em;
+    padding: 0.5em 0.5em;
     border-radius: 17px;
     box-sizing: border-box;
   }
   &-input::placeholder {
     color: $blue;
   }
-  &-input:active {
+  &-input--active {
     border: 3px $blue solid;
   }
   &-btn {

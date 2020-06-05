@@ -56,6 +56,9 @@ let test_page = document.querySelector(".test");
 let prof_page = document.querySelector(".profile");
 
 let topics = document.querySelector(".main-topics");
+let topicGroups = document.querySelectorAll(".main-topic");
+let testGroups = document.querySelectorAll(".main-tests");
+let testList = document.querySelectorAll(".main-test");
 
 let footer = document.querySelector(".footer");
 
@@ -69,15 +72,13 @@ let profile_btn = document.querySelector(".profile-btn");
 let profile_input = document.querySelector(".profile-input");
 let name = document.querySelector(".name");
 
-let topicList = document.querySelectorAll(".main-topic");
-let testsList = document.querySelectorAll(".main-tests");
 function view(obj) {
   obj.classList.add("show");
   obj.classList.remove("hidden");
 }
 function unview(obj) {
-  obj.classList.remove("show");
   obj.classList.add("hidden");
+  obj.classList.remove("show");
 }
 function prevmain() {
   view(footer);
@@ -86,8 +87,8 @@ function prevmain() {
   unview(preview);
 }
 function closetests() {
-  for (let i = 0; i < testsList.length; i++) {
-    unview(testsList[i]);
+  for (let i = 0; i < testGroups.length; i++) {
+    unview(testGroups[i]);
   }
 }
 previewNextList[previewEndList.length - 1].addEventListener("click", () => {
@@ -123,13 +124,23 @@ prof_btn.addEventListener("click", () => {
   view(open_page);
   unview(header);
 });
+profile_input.addEventListener("click", () => {
+  profile_input.classList.add("profile-input--active");
+});
 profile_btn.addEventListener("click", () => {
   name.innerHTML = profile_input.value;
-  name;
+  profile_input.classList.remove("profile-input--active");
 });
-for (let i = 0; i < topicList.length; i++) {
-  topicList[i].addEventListener("click", () => {
+for (let i = 0; i < topicGroups.length; i++) {
+  topicGroups[i].addEventListener("click", () => {
     unview(topics);
-    view(testsList[i]);
+    view(testGroups[i]);
+  });
+}
+for (let i = 0; i < testList.length; i++) {
+  testList[i].addEventListener("click", () => {
+    unview(home_page);
+
+    view(test_page);
   });
 }

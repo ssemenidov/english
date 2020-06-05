@@ -23,6 +23,7 @@
 .main {
   min-height: 100%;
   //opacity: 0;
+  width: 100%;
   display: flex;
   &-content {
     display: flex;
@@ -49,7 +50,9 @@
   }
   &-topic:nth-of-type(2) {
     align-self: flex-end;
-    justify-content: flex-start;
+    .topic-title {
+      justify-content: flex-start;
+    }
   }
   &-tests {
     width: 100%;
@@ -60,9 +63,11 @@
   }
   &-test {
     width: 100%;
-    height: 59px;
+    min-height: 59px;
     border-radius: 24px;
     display: flex;
+    padding: 0.5em;
+    box-sizing: border-box;
     align-items: center;
     justify-content: center;
     font-weight: 700;
@@ -70,6 +75,11 @@
     letter-spacing: 0.26em;
     margin: 4px 0;
   }
+  // &-test:active {
+  //   border: 4px solid #13aaff;
+  //   box-sizing: content-box;
+  //   border-radius: 24px;
+  // }
 }
 .topic {
   &-title {

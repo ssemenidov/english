@@ -33,7 +33,7 @@ ul {
 .hidden {
   opacity: 0 !important;
   display: none !important;
-  transition: opacity 0.5s ease-in-out;
+  animation: hidden 0.5s ease-in-out forwards;
 }
 .container {
   margin: 0 auto;
@@ -47,5 +47,13 @@ ul {
   }
   to {
     opacity: 1;
+  }
+}
+@keyframes hidden {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
