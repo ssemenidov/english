@@ -162,8 +162,6 @@ function closetests() {
 }
 function closetestspages(sectionActive, groupActive) {
   for (let i = 1; i < testList[sectionActive][groupActive].length; i++) {
-    console.log(testList[sectionActive][groupActive][i]);
-
     unview(testList[sectionActive][groupActive][i]);
     dotList[sectionActive][groupActive][i].classList.remove("dot-active");
   }
@@ -192,6 +190,7 @@ function openTestpage() {
   open_page = test_page;
   view(open_page);
   view(header);
+
   view(testSectionList[sectionActive]);
   view(testGroupList[sectionActive][groupActive]);
   view(testList[sectionActive][groupActive][testActive]);
@@ -281,30 +280,21 @@ for (let i = 0; i < sectionTitleList.length; i++) {
     unview(testSectionList[sectionActive]);
     sectionActive = i;
     unview(sectionTitles);
+
     view(sectionList[i]);
-    testOpen(sectionActive);
   });
-}
-function testOpen(sectionActive) {
-  for (let i = 0; i < groupList[sectionActive].length; i++) {
-    groupList[sectionActive][i].addEventListener("click", () => {
-      unview(testGroupList[sectionActive][groupActive]);
+  for (let j = 0; j < groupList[i].length; j++) {
+    groupList[i][j].addEventListener("click", () => {
+      //unview(testGroupList[sectionActive][groupActive]);
       closetestspages(sectionActive, groupActive);
-      groupActive = i;
+      groupActive = j;
       testActive = 0;
       openTestpage();
-      testFollow(sectionActive, groupActive);
     });
-  }
-}
-function testFollow(sectionActive, groupActive) {
-  testActive = 0;
-  for (let i = 0; i < testList[sectionActive][groupActive].length; i++) {
-    for (let j = 0; j < transList[sectionActive][groupActive][i].length; j++) {
-      transList[sectionActive][groupActive][i][j].addEventListener(
-        "click",
-        () => {
-          if (j == 1) {
+    for (let l = 0; l < testList[i][j].length; l++) {
+      for (let y = 0; y < transList[i][j][l].length; y++) {
+        transList[i][j][l][y].addEventListener("click", () => {
+          if (y == 1) {
             if (testActive < 9) {
               unview(testList[sectionActive][groupActive][testActive]);
               dotList[sectionActive][groupActive][testActive].classList.remove(
@@ -321,8 +311,8 @@ function testFollow(sectionActive, groupActive) {
           } else {
             view(wrongList[sectionActive][groupActive][testActive]);
           }
-        }
-      );
+        });
+      }
     }
   }
 }
