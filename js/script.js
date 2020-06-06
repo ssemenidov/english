@@ -16,34 +16,38 @@ function test() {
     (this.answers = ["answer", "answer", "answer"]),
     (this.word = "Word");
 }
-function testgroup() {
-  (this.title = ""), (this.tests = []);
+function testgroup(title, tests) {
+  (this.title = title), (this.tests = tests);
 }
-let testtems = [
-  [
+function testsection(title, groups) {
+  (this.title = title), (this.groups = groups);
+}
+let sections = ["noun", "verb", "adj"];
+let data = [
+  new testsection("сущ.", [
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
-  ],
-  [
+  ]),
+  new testsection("глаг", [
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
-  ],
-  [
+  ]),
+  new testsection("прил.", [
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
     [new testgroup("title", [new test(), new test()])],
-  ],
+  ]),
 ];
 let previewEndList = document.querySelectorAll(".preview-end");
 let previewNextList = document.querySelectorAll(".preview-next");
@@ -56,6 +60,18 @@ let test_page = document.querySelector(".test");
 let prof_page = document.querySelector(".profile");
 
 let sectionTitles = document.querySelector(".main-section-titles");
+
+for (let i = 0; i < data.length; i++) {
+  var title = document.createElement("li");
+  title.classList.add("main-section-title");
+  title.classList.add(sections[i]);
+
+  var p = document.createElement("p");
+  title.appendChild(p);
+  p.innerHTML = data[i].title;
+  sectionTitles.appendChild(title);
+}
+
 let sectionTitleList = document.querySelectorAll(".main-section-title");
 let sectionList = document.querySelectorAll(".main-section");
 let groupList = [];
@@ -68,7 +84,15 @@ let groupActive = 0;
 let footer = document.querySelector(".footer");
 
 let testSectionList = document.querySelectorAll(".test-section");
-
+let testGroupList = [];
+let testList = [];
+for (let i = 0; i < testSectionList.length; i++) {
+  testGroupList.push(testSectionList[i].querySelectorAll(".test-group"));
+  testList.push([]);
+  for (let j = 0; j < testGroupList[i].length; j++) {
+    testList[i].push(testSectionList[i].querySelectorAll(".test-content"));
+  }
+}
 let home_btn = document.getElementById("home");
 let test_btn = document.getElementById("test");
 let prof_btn = document.getElementById("profile");
@@ -174,8 +198,8 @@ function testOpen(sectionActive) {
       open_page = test_page;
       groupActive = i;
       view(test_page);
-
       view(testSectionList[sectionActive]);
+      view(testGroupList[sectionActive][groupActive]);
     });
   }
 }
