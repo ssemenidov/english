@@ -77,6 +77,7 @@ let sectionList = document.querySelectorAll(".main-section");
 //создания контента и массивов ссылок на title секций и их группы
 let sectionTitleList = [];
 let groupList = [];
+
 for (let i = 0; i < data.length; i++) {
   var sectiontitle = document.createElement("li");
   sectiontitle.classList.add("main-section-title");
@@ -88,6 +89,7 @@ for (let i = 0; i < data.length; i++) {
   sectionTitles.appendChild(sectiontitle);
   sectionTitleList.push(sectiontitle);
   groupList.push([]);
+
   for (let j = 0; j < data[i].groups.length; j++) {
     var grouptitle = document.createElement("li");
     grouptitle.classList.add("main-group");
@@ -100,15 +102,28 @@ for (let i = 0; i < data.length; i++) {
 
 let sectionActive = 0;
 let groupActive = 0;
+let testActive = 0;
 
 let testSectionList = document.querySelectorAll(".test-section");
 let testGroupList = [];
 let testList = [];
+let wrongList = [];
+let transList = [];
+let dotList = [];
 for (let i = 0; i < testSectionList.length; i++) {
   testGroupList.push(testSectionList[i].querySelectorAll(".test-group"));
   testList.push([]);
+  wrongList.push([]);
+  transList.push([]);
+  dotList.push([]);
   for (let j = 0; j < testGroupList[i].length; j++) {
-    testList[i].push(testSectionList[i].querySelectorAll(".test-content"));
+    testList[i].push(testGroupList[i][j].querySelectorAll(".test-content"));
+    wrongList[i].push(testGroupList[i][j].querySelectorAll(".test-wrong"));
+    dotList[i].push(testGroupList[i][j].querySelectorAll(".test-dot"));
+    transList[i].push([]);
+    for (let l = 0; l < testList[i][j].length; l++) {
+      transList[i][j].push(testList[i][j][l].querySelectorAll(".test-tran"));
+    }
   }
 }
 
@@ -116,6 +131,9 @@ for (let i = 0; i < testSectionList.length; i++) {
 function view(obj) {
   obj.classList.add("show");
   obj.classList.remove("hidden");
+  if (obj.classList.contains("hidden-fast")) {
+    obj.classList.remove("hidden-fast");
+  }
 }
 function viewFast(obj) {
   obj.classList.add("show-fast");
@@ -127,6 +145,7 @@ function unview(obj) {
 }
 function unviewFast(obj) {
   obj.classList.add("hidden-fast");
+
   obj.classList.remove("show-fast");
 }
 
@@ -139,6 +158,14 @@ function prevmain() {
 function closetests() {
   for (let i = 0; i < sectionList.length; i++) {
     unview(sectionList[i]);
+  }
+}
+function closetestspages(sectionActive, groupActive) {
+  for (let i = 1; i < testList[sectionActive][groupActive].length; i++) {
+    console.log(testList[sectionActive][groupActive][i]);
+
+    unview(testList[sectionActive][groupActive][i]);
+    dotList[sectionActive][groupActive][i].classList.remove("dot-active");
   }
 }
 
@@ -167,6 +194,21 @@ function openTestpage() {
   view(header);
   view(testSectionList[sectionActive]);
   view(testGroupList[sectionActive][groupActive]);
+  view(testList[sectionActive][groupActive][testActive]);
+}
+function closeTestpage() {
+  unviewFast(open_btn.children[0]);
+  viewFast(open_btn.children[1]);
+  open_btn = home_btn;
+  viewFast(open_btn.children[0]);
+  unviewFast(open_btn.children[1]);
+  unview(open_page);
+  open_page = home_page;
+  view(open_page);
+  view(header);
+  unview(testSectionList[sectionActive]);
+  unview(testGroupList[sectionActive][groupActive]);
+  unview(testList[sectionActive][groupActive][testActive]);
 }
 test_btn.addEventListener("click", () => {
   openTestpage();
@@ -179,6 +221,7 @@ home_btn.addEventListener("click", () => {
   viewFast(open_btn.children[0]);
   unviewFast(open_btn.children[1]);
   unview(open_page);
+  closeTestpage();
   closetests();
   open_page = home_page;
   view(open_page);
@@ -192,6 +235,7 @@ prof_btn.addEventListener("click", () => {
   viewFast(open_btn.children[0]);
   unviewFast(open_btn.children[1]);
   unview(open_page);
+  closeTestpage();
 
   open_page = prof_page;
   view(open_page);
@@ -244,12 +288,41 @@ for (let i = 0; i < sectionTitleList.length; i++) {
 function testOpen(sectionActive) {
   for (let i = 0; i < groupList[sectionActive].length; i++) {
     groupList[sectionActive][i].addEventListener("click", () => {
-      if (groupActive < 3) {
-        unview(testGroupList[sectionActive][groupActive]);
-      }
-
+      unview(testGroupList[sectionActive][groupActive]);
+      closetestspages(sectionActive, groupActive);
       groupActive = i;
+      testActive = 0;
       openTestpage();
+      testFollow(sectionActive, groupActive);
     });
+  }
+}
+function testFollow(sectionActive, groupActive) {
+  testActive = 0;
+  for (let i = 0; i < testList[sectionActive][groupActive].length; i++) {
+    for (let j = 0; j < transList[sectionActive][groupActive][i].length; j++) {
+      transList[sectionActive][groupActive][i][j].addEventListener(
+        "click",
+        () => {
+          if (j == 1) {
+            if (testActive < 9) {
+              unview(testList[sectionActive][groupActive][testActive]);
+              dotList[sectionActive][groupActive][testActive].classList.remove(
+                "dot-active"
+              );
+              testActive++;
+              dotList[sectionActive][groupActive][testActive].classList.add(
+                "dot-active"
+              );
+              view(testList[sectionActive][groupActive][testActive]);
+            } else {
+              closeTestpage();
+            }
+          } else {
+            view(wrongList[sectionActive][groupActive][testActive]);
+          }
+        }
+      );
+    }
   }
 }
