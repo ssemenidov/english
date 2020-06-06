@@ -11,17 +11,6 @@ $(document).ready(function () {
     dotsClass: "preview-dots",
   });
 });
-$(document).ready(function () {
-  $(".test-slider").slick({
-    dots: true,
-    arrows: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: false,
-    swipeToSlide: true,
-    dotsClass: "test-dots",
-  });
-});
 function test() {
   (this.right = 0),
     (this.answers = ["answer", "answer", "answer"]),
@@ -66,12 +55,19 @@ let home_page = document.querySelector(".main");
 let test_page = document.querySelector(".test");
 let prof_page = document.querySelector(".profile");
 
-let topics = document.querySelector(".main-topics");
-let topicGroups = document.querySelectorAll(".main-topic");
-let testGroups = document.querySelectorAll(".main-tests");
-let testList = document.querySelectorAll(".main-test");
-
+let sectionTitles = document.querySelector(".main-section-titles");
+let sectionTitleList = document.querySelectorAll(".main-section-title");
+let sectionList = document.querySelectorAll(".main-section");
+let groupList = [];
+// let groupList = document.querySelectorAll(".main-group");
+for (let i = 0; i < sectionList.length; i++) {
+  groupList.push(sectionList[i].querySelectorAll(".main-group"));
+}
+let sectionActive = 0;
+let groupActive = 0;
 let footer = document.querySelector(".footer");
+
+let testSectionList = document.querySelectorAll(".test-section");
 
 let home_btn = document.getElementById("home");
 let test_btn = document.getElementById("test");
@@ -98,10 +94,11 @@ function prevmain() {
   unview(preview);
 }
 function closetests() {
-  for (let i = 0; i < testGroups.length; i++) {
-    unview(testGroups[i]);
+  for (let i = 0; i < sectionList.length; i++) {
+    unview(sectionList[i]);
   }
 }
+
 previewNextList[previewEndList.length - 1].addEventListener("click", () => {
   prevmain();
 });
@@ -110,6 +107,22 @@ for (let previewend of previewEndList) {
     prevmain();
   });
 }
+
+// function openPage(page){
+
+// }
+// function closePage(page){
+//   if (page==test_page){
+//     unview(testSectionList[sectionActive]);
+//     unview(page);
+//   }
+//   else if(page==home_page){
+//     unview(page);
+//     view(sectionTitles);
+//   view(header);
+
+//   }
+
 test_btn.addEventListener("click", () => {
   open_btn = test_btn;
   unview(open_page);
@@ -125,16 +138,18 @@ home_btn.addEventListener("click", () => {
   unview;
   open_page = home_page;
   view(open_page);
-  view(topics);
+  view(sectionTitles);
   view(header);
 });
 prof_btn.addEventListener("click", () => {
   open_btn = prof_btn;
   unview(open_page);
+
   open_page = prof_page;
   view(open_page);
   unview(header);
 });
+
 profile_input.addEventListener("click", () => {
   profile_input.classList.add("profile-input--active");
 });
@@ -142,16 +157,25 @@ profile_btn.addEventListener("click", () => {
   name.innerHTML = profile_input.value;
   profile_input.classList.remove("profile-input--active");
 });
-for (let i = 0; i < topicGroups.length; i++) {
-  topicGroups[i].addEventListener("click", () => {
-    unview(topics);
-    view(testGroups[i]);
+
+for (let i = 0; i < sectionTitleList.length; i++) {
+  sectionTitleList[i].addEventListener("click", () => {
+    unview(testSectionList[sectionActive]);
+    sectionActive = i;
+    unview(sectionTitles);
+    view(sectionList[i]);
+    testOpen(sectionActive);
   });
 }
-for (let i = 0; i < testList.length; i++) {
-  testList[i].addEventListener("click", () => {
-    unview(home_page);
+function testOpen(sectionActive) {
+  for (let i = 0; i < groupList[sectionActive].length; i++) {
+    groupList[sectionActive][i].addEventListener("click", () => {
+      unview(home_page);
+      open_page = test_page;
+      groupActive = i;
+      view(test_page);
 
-    view(test_page);
-  });
+      view(testSectionList[sectionActive]);
+    });
+  }
 }
