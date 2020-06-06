@@ -52,6 +52,30 @@
     flex-direction: column;
     justify-content: space-around;
   }
+  &-section-title {
+    position: relative;
+  }
+  &-section-titles .noun:after {
+    content: url(../img/arrow1.svg);
+    position: absolute;
+
+    bottom: -19%;
+    left: -2%;
+  }
+  &-section-titles .verb:after {
+    content: url(../img/arrow2.svg);
+    position: absolute;
+
+    bottom: -18%;
+    right: -2%;
+  }
+  &-section-titles .adj:after {
+    content: url(../img/arrow3.svg);
+    position: absolute;
+
+    bottom: -30%;
+    left: -5%;
+  }
   &-section-title p {
     max-height: 120px;
     height: 20vh;

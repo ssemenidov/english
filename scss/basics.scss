@@ -35,6 +35,15 @@ ul {
   display: none !important;
   animation: hidden 0.5s ease-in-out forwards;
 }
+.show-fast {
+  z-index: 10 !important;
+  animation: show forwards;
+}
+.hidden-fast {
+  opacity: 0 !important;
+  display: none !important;
+  animation: hidden forwards;
+}
 .container {
   margin: 0 auto;
   width: 85%;

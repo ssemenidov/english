@@ -125,9 +125,17 @@ function view(obj) {
   obj.classList.add("show");
   obj.classList.remove("hidden");
 }
+function viewFast(obj) {
+  obj.classList.add("show-fast");
+  obj.classList.remove("hidden-fast");
+}
 function unview(obj) {
   obj.classList.add("hidden");
   obj.classList.remove("show");
+}
+function unviewFast(obj) {
+  obj.classList.add("hidden-fast");
+  obj.classList.remove("show-fast");
 }
 function prevmain() {
   view(footer);
@@ -164,27 +172,42 @@ for (let previewend of previewEndList) {
 //   view(header);
 
 //   }
-
-test_btn.addEventListener("click", () => {
+function openTestpage() {
+  unviewFast(open_btn.children[0]);
+  viewFast(open_btn.children[1]);
   open_btn = test_btn;
+  viewFast(open_btn.children[0]);
+  unviewFast(open_btn.children[1]);
   unview(open_page);
   open_page = test_page;
   view(open_page);
   view(header);
+  view(testSectionList[sectionActive]);
+  view(testGroupList[sectionActive][groupActive]);
+}
+test_btn.addEventListener("click", () => {
+  openTestpage();
 });
 
 home_btn.addEventListener("click", () => {
+  unviewFast(open_btn.children[0]);
+  viewFast(open_btn.children[1]);
   open_btn = home_btn;
+  viewFast(open_btn.children[0]);
+  unviewFast(open_btn.children[1]);
   unview(open_page);
   closetests();
-  unview;
   open_page = home_page;
   view(open_page);
   view(sectionTitles);
   view(header);
 });
 prof_btn.addEventListener("click", () => {
+  unviewFast(open_btn.children[0]);
+  viewFast(open_btn.children[1]);
   open_btn = prof_btn;
+  viewFast(open_btn.children[0]);
+  unviewFast(open_btn.children[1]);
   unview(open_page);
 
   open_page = prof_page;
@@ -212,12 +235,8 @@ for (let i = 0; i < sectionTitleList.length; i++) {
 function testOpen(sectionActive) {
   for (let i = 0; i < groupList[sectionActive].length; i++) {
     groupList[sectionActive][i].addEventListener("click", () => {
-      unview(home_page);
-      open_page = test_page;
       groupActive = i;
-      view(test_page);
-      view(testSectionList[sectionActive]);
-      view(testGroupList[sectionActive][groupActive]);
+      openTestpage();
     });
   }
 }
