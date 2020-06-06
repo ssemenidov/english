@@ -25,28 +25,40 @@ function testsection(title, groups) {
 let sections = ["noun", "verb", "adj"];
 let data = [
   new testsection("сущ.", [
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
   ]),
   new testsection("глаг", [
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
   ]),
   new testsection("прил.", [
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
-    [new testgroup("title", [new test(), new test()])],
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
+    new testgroup("title", [new test(), new test()]),
   ]),
 ];
 let previewEndList = document.querySelectorAll(".preview-end");
@@ -61,19 +73,25 @@ let prof_page = document.querySelector(".profile");
 
 let sectionTitles = document.querySelector(".main-section-titles");
 
+let sectionList = document.querySelectorAll(".main-section");
+
 for (let i = 0; i < data.length; i++) {
-  var title = document.createElement("li");
-  title.classList.add("main-section-title");
-  title.classList.add(sections[i]);
+  var sectiontitle = document.createElement("li");
+  sectiontitle.classList.add("main-section-title");
+  sectiontitle.classList.add(sections[i]);
 
   var p = document.createElement("p");
-  title.appendChild(p);
+  sectiontitle.appendChild(p);
   p.innerHTML = data[i].title;
-  sectionTitles.appendChild(title);
+  sectionTitles.appendChild(sectiontitle);
+  for (let j = 0; j < data[i].groups.length; j++) {
+    var grouptitle = document.createElement("li");
+    grouptitle.classList.add("main-group");
+    grouptitle.innerHTML = data[i].groups[j].title;
+    sectionList[i].appendChild(grouptitle);
+  }
 }
-
 let sectionTitleList = document.querySelectorAll(".main-section-title");
-let sectionList = document.querySelectorAll(".main-section");
 let groupList = [];
 // let groupList = document.querySelectorAll(".main-group");
 for (let i = 0; i < sectionList.length; i++) {
