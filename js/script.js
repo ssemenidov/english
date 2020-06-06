@@ -140,6 +140,8 @@ function viewFast(obj) {
   obj.classList.remove("hidden-fast");
 }
 function unview(obj) {
+  console.log(obj);
+
   obj.classList.add("hidden");
   obj.classList.remove("show");
 }
@@ -196,21 +198,24 @@ function openTestpage() {
   view(testList[sectionActive][groupActive][testActive]);
 }
 function closeTestpage() {
-  unviewFast(open_btn.children[0]);
-  viewFast(open_btn.children[1]);
-  open_btn = home_btn;
-  viewFast(open_btn.children[0]);
-  unviewFast(open_btn.children[1]);
-  unview(open_page);
-  open_page = home_page;
-  view(open_page);
-  view(header);
   unview(testSectionList[sectionActive]);
   unview(testGroupList[sectionActive][groupActive]);
   unview(testList[sectionActive][groupActive][testActive]);
 }
+unview(home_page);
 test_btn.addEventListener("click", () => {
-  openTestpage();
+  unviewFast(open_btn.children[0]);
+  viewFast(open_btn.children[1]);
+  open_btn = test_btn;
+  viewFast(open_btn.children[0]);
+  unviewFast(open_btn.children[1]);
+  unview(open_page);
+  open_page = test_page;
+  view(open_page);
+  view(header);
+  view(testSectionList[sectionActive]);
+  view(testGroupList[sectionActive][groupActive]);
+  view(testList[sectionActive][groupActive][testActive]);
 });
 
 home_btn.addEventListener("click", () => {
@@ -220,12 +225,13 @@ home_btn.addEventListener("click", () => {
   viewFast(open_btn.children[0]);
   unviewFast(open_btn.children[1]);
   unview(open_page);
-  closeTestpage();
+  // closeTestpage();
   closetests();
   open_page = home_page;
   view(open_page);
   view(sectionTitles);
   view(header);
+  closeTestpage();
 });
 prof_btn.addEventListener("click", () => {
   unviewFast(open_btn.children[0]);
@@ -234,11 +240,12 @@ prof_btn.addEventListener("click", () => {
   viewFast(open_btn.children[0]);
   unviewFast(open_btn.children[1]);
   unview(open_page);
-  closeTestpage();
 
+  // closeTestpage();
   open_page = prof_page;
   view(open_page);
   unview(header);
+  closeTestpage();
 });
 
 previewNextList[previewEndList.length - 1].addEventListener("click", () => {
