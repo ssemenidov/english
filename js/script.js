@@ -25,40 +25,40 @@ function testsection(title, groups) {
 let sections = ["noun", "verb", "adj"];
 let data = [
   new testsection("сущ.", [
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
   ]),
   new testsection("глаг", [
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
   ]),
   new testsection("прил.", [
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
-    new testgroup("title", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [new test(), new test()]),
   ]),
 ];
 let previewEndList = document.querySelectorAll(".preview-end");
@@ -66,15 +66,17 @@ let previewNextList = document.querySelectorAll(".preview-next");
 let preview = document.querySelector(".preview");
 
 let header = document.querySelector(".header");
-
+//ссылки страниц
 let home_page = document.querySelector(".main");
 let test_page = document.querySelector(".test");
 let prof_page = document.querySelector(".profile");
-
+//ссылки на секций и из блоки на главной
 let sectionTitles = document.querySelector(".main-section-titles");
-
 let sectionList = document.querySelectorAll(".main-section");
 
+//создания контента и массивов ссылок на title секций и их группы
+let sectionTitleList = [];
+let groupList = [];
 for (let i = 0; i < data.length; i++) {
   var sectiontitle = document.createElement("li");
   sectiontitle.classList.add("main-section-title");
@@ -84,22 +86,20 @@ for (let i = 0; i < data.length; i++) {
   sectiontitle.appendChild(p);
   p.innerHTML = data[i].title;
   sectionTitles.appendChild(sectiontitle);
+  sectionTitleList.push(sectiontitle);
+  groupList.push([]);
   for (let j = 0; j < data[i].groups.length; j++) {
     var grouptitle = document.createElement("li");
     grouptitle.classList.add("main-group");
-    grouptitle.innerHTML = data[i].groups[j].title;
+    grouptitle.innerHTML =
+      data[i].title + " " + data[i].groups[j].title + String(j + 1);
     sectionList[i].appendChild(grouptitle);
+    groupList[i].push(grouptitle);
   }
 }
-let sectionTitleList = document.querySelectorAll(".main-section-title");
-let groupList = [];
-// let groupList = document.querySelectorAll(".main-group");
-for (let i = 0; i < sectionList.length; i++) {
-  groupList.push(sectionList[i].querySelectorAll(".main-group"));
-}
+
 let sectionActive = 0;
 let groupActive = 0;
-let footer = document.querySelector(".footer");
 
 let testSectionList = document.querySelectorAll(".test-section");
 let testGroupList = [];
@@ -111,16 +111,8 @@ for (let i = 0; i < testSectionList.length; i++) {
     testList[i].push(testSectionList[i].querySelectorAll(".test-content"));
   }
 }
-let home_btn = document.getElementById("home");
-let test_btn = document.getElementById("test");
-let prof_btn = document.getElementById("profile");
-let open_btn = home_btn;
-let open_page = home_page;
 
-let profile_btn = document.querySelector(".profile-btn");
-let profile_input = document.querySelector(".profile-input");
-let name = document.querySelector(".name");
-
+//появление исчезновение элементов
 function view(obj) {
   obj.classList.add("show");
   obj.classList.remove("hidden");
@@ -137,6 +129,7 @@ function unviewFast(obj) {
   obj.classList.add("hidden-fast");
   obj.classList.remove("show-fast");
 }
+
 function prevmain() {
   view(footer);
   view(header);
@@ -149,29 +142,19 @@ function closetests() {
   }
 }
 
-previewNextList[previewEndList.length - 1].addEventListener("click", () => {
-  prevmain();
-});
-for (let previewend of previewEndList) {
-  previewend.addEventListener("click", () => {
-    prevmain();
-  });
-}
+//футер ккнопки
+let footer = document.querySelector(".footer");
 
-// function openPage(page){
+let home_btn = document.getElementById("home");
+let test_btn = document.getElementById("test");
+let prof_btn = document.getElementById("profile");
+let open_btn = home_btn;
+let open_page = home_page;
 
-// }
-// function closePage(page){
-//   if (page==test_page){
-//     unview(testSectionList[sectionActive]);
-//     unview(page);
-//   }
-//   else if(page==home_page){
-//     unview(page);
-//     view(sectionTitles);
-//   view(header);
+let profile_btn = document.querySelector(".profile-btn");
+let profile_input = document.querySelector(".profile-input");
+let name = document.querySelector(".name");
 
-//   }
 function openTestpage() {
   unviewFast(open_btn.children[0]);
   viewFast(open_btn.children[1]);
@@ -215,6 +198,31 @@ prof_btn.addEventListener("click", () => {
   unview(header);
 });
 
+previewNextList[previewEndList.length - 1].addEventListener("click", () => {
+  prevmain();
+});
+for (let previewend of previewEndList) {
+  previewend.addEventListener("click", () => {
+    prevmain();
+  });
+}
+
+// function openPage(page){
+
+// }
+// function closePage(page){
+//   if (page==test_page){
+//     unview(testSectionList[sectionActive]);
+//     unview(page);
+//   }
+//   else if(page==home_page){
+//     unview(page);
+//     view(sectionTitles);
+//   view(header);
+
+//   }
+
+//профиль
 profile_input.addEventListener("click", () => {
   profile_input.classList.add("profile-input--active");
 });
@@ -223,6 +231,7 @@ profile_btn.addEventListener("click", () => {
   profile_input.classList.remove("profile-input--active");
 });
 
+//Выбор группы
 for (let i = 0; i < sectionTitleList.length; i++) {
   sectionTitleList[i].addEventListener("click", () => {
     unview(testSectionList[sectionActive]);
@@ -235,6 +244,10 @@ for (let i = 0; i < sectionTitleList.length; i++) {
 function testOpen(sectionActive) {
   for (let i = 0; i < groupList[sectionActive].length; i++) {
     groupList[sectionActive][i].addEventListener("click", () => {
+      if (groupActive < 3) {
+        unview(testGroupList[sectionActive][groupActive]);
+      }
+
       groupActive = i;
       openTestpage();
     });
