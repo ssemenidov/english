@@ -451,8 +451,7 @@ for (let i = 0; i < data.length; i++) {
   for (let j = 0; j < data[i].groups.length; j++) {
     var grouptitle = document.createElement("li");
     grouptitle.classList.add("main-group");
-    grouptitle.innerHTML =
-      data[i].title + " " + data[i].groups[j].title + String(j + 1);
+    grouptitle.innerHTML = data[i].title + " " + data[i].groups[j].title;
     sectionList[i].appendChild(grouptitle);
     groupList[i].push(grouptitle);
 
