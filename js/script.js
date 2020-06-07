@@ -11,10 +11,16 @@ $(document).ready(function () {
     dotsClass: "preview-dots",
   });
 });
-function test(right, answers, word) {
-  (this.right = 0),
-    (this.answers = ["trans1", "trans2", "trans3"]),
-    (this.word = "Word");
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function test(
+  right = getRandomInt(3),
+  answers = ["trans1", "trans2", "trans3"],
+  word = "Word"
+) {
+  (this.right = right), (this.answers = answers), (this.word = word);
 }
 function testgroup(title, tests) {
   (this.title = title), (this.tests = tests);
@@ -26,7 +32,7 @@ let sections = ["noun", "verb", "adj"];
 let data = [
   new testsection("сущ.", [
     new testgroup("group", [
-      new test(),
+      new test(0, ["trans3", "trans2", "trans3"], "Word1"),
       new test(),
       new test(),
       new test(),
