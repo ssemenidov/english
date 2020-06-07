@@ -22,16 +22,16 @@ function test(
 ) {
   (this.right = right), (this.answers = answers), (this.word = word);
 }
-function testgroup(title, tests) {
+function testgroup(title = "group", tests = [new test()]) {
   (this.title = title), (this.tests = tests);
 }
-function testsection(title, groups) {
+function testsection(title = "section", groups = [new testgroup()]) {
   (this.title = title), (this.groups = groups);
 }
 let sections = ["noun", "verb", "adj"];
 let data = [
-  new testsection("сущ.", [
-    new testgroup("group", [
+  new testsection("xxxxxxxxxx xxxxx ", [
+    new testgroup("groupgroup groupgroup group group", [
       new test(
         0,
         ["xxxxxxxxxxxxxxxx", "xxxxxxxxxxx xxxxxxxxxx", "xxxxx"],
