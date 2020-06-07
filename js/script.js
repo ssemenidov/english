@@ -140,8 +140,6 @@ function viewFast(obj) {
   obj.classList.remove("hidden-fast");
 }
 function unview(obj) {
-  console.log(obj);
-
   obj.classList.add("hidden");
   obj.classList.remove("show");
 }
@@ -157,7 +155,7 @@ function prevmain() {
   view(home_page);
   unview(preview);
 }
-function closetests() {
+function closesections() {
   for (let i = 0; i < sectionList.length; i++) {
     unview(sectionList[i]);
   }
@@ -196,44 +194,31 @@ function openTestpage() {
   view(testSectionList[sectionActive]);
   view(testGroupList[sectionActive][groupActive]);
   view(testList[sectionActive][groupActive][testActive]);
+  dotList[sectionActive][groupActive][0].classList.add("dot-active");
 }
 function closeTestpage() {
   unview(testSectionList[sectionActive]);
   unview(testGroupList[sectionActive][groupActive]);
   unview(testList[sectionActive][groupActive][testActive]);
+  dotList[sectionActive][groupActive][testActive].classList.remove(
+    "dot-active"
+  );
+  testActive = 0;
 }
-unview(home_page);
-test_btn.addEventListener("click", () => {
-  unviewFast(open_btn.children[0]);
-  viewFast(open_btn.children[1]);
-  open_btn = test_btn;
-  viewFast(open_btn.children[0]);
-  unviewFast(open_btn.children[1]);
-  unview(open_page);
-  open_page = test_page;
-  view(open_page);
-  view(header);
-  view(testSectionList[sectionActive]);
-  view(testGroupList[sectionActive][groupActive]);
-  view(testList[sectionActive][groupActive][testActive]);
-});
-
-home_btn.addEventListener("click", () => {
+function openHomepage() {
   unviewFast(open_btn.children[0]);
   viewFast(open_btn.children[1]);
   open_btn = home_btn;
   viewFast(open_btn.children[0]);
   unviewFast(open_btn.children[1]);
   unview(open_page);
-  // closeTestpage();
-  closetests();
   open_page = home_page;
   view(open_page);
   view(sectionTitles);
   view(header);
-  closeTestpage();
-});
-prof_btn.addEventListener("click", () => {
+  closesections();
+}
+function openPreviewpage() {
   unviewFast(open_btn.children[0]);
   viewFast(open_btn.children[1]);
   open_btn = prof_btn;
@@ -245,6 +230,20 @@ prof_btn.addEventListener("click", () => {
   open_page = prof_page;
   view(open_page);
   unview(header);
+}
+
+unview(home_page);
+test_btn.addEventListener("click", () => {
+  openTestpage();
+});
+
+home_btn.addEventListener("click", () => {
+  openHomepage();
+
+  closeTestpage();
+});
+prof_btn.addEventListener("click", () => {
+  openPreviewpage();
   closeTestpage();
 });
 
@@ -302,7 +301,7 @@ for (let i = 0; i < sectionTitleList.length; i++) {
       for (let y = 0; y < transList[i][j][l].length; y++) {
         transList[i][j][l][y].addEventListener("click", () => {
           if (y == 1) {
-            if (testActive < 9) {
+            if (testActive < testList[sectionActive][groupActive].length - 1) {
               unview(testList[sectionActive][groupActive][testActive]);
               dotList[sectionActive][groupActive][testActive].classList.remove(
                 "dot-active"
@@ -313,6 +312,7 @@ for (let i = 0; i < sectionTitleList.length; i++) {
               );
               view(testList[sectionActive][groupActive][testActive]);
             } else {
+              openHomepage();
               closeTestpage();
             }
           } else {

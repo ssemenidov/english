@@ -40,6 +40,11 @@
   //opacity: 0;
   width: 100%;
   display: flex;
+  background-image: url(../img/bg2.png), url(../img/bg1.png),
+    url(../img/bg2.png);
+  background-position: center 15%, center center, center 91%;
+  background-repeat: repeat-x;
+  background-size: 100% 30%;
   &-content {
     display: flex;
     height: 100%;

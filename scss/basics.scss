@@ -6,7 +6,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 body {
-  max-width: 425px;
+  //max-width: 425px;
   height: 100vh;
 
   margin: auto auto;
@@ -48,8 +48,10 @@ ul {
   margin: 0 auto;
   width: 85%;
   height: inherit;
+  max-width: 500px;
 }
 .container--main {
+  max-width: 500px;
   padding: 13vh 0;
   box-sizing: border-box;
 }
