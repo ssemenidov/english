@@ -427,6 +427,7 @@ let testActive = 0;
 let testGroupList = [];
 let testList = [];
 let wrongList = [];
+let correctList = [];
 let transList = [];
 let dotList = [];
 
@@ -445,6 +446,7 @@ for (let i = 0; i < data.length; i++) {
   testGroupList.push([]);
   testList.push([]);
   wrongList.push([]);
+  correctList.push([]);
   transList.push([]);
   dotList.push([]);
 
@@ -465,6 +467,7 @@ for (let i = 0; i < data.length; i++) {
 
     testList[i].push([]);
     wrongList[i].push([]);
+    correctList[i].push([]);
     dotList[i].push([]);
     transList[i].push([]);
 
@@ -480,6 +483,13 @@ for (let i = 0; i < data.length; i++) {
       testWrong.innerHTML = "Неверно";
       testContent.appendChild(testWrong);
       wrongList[i][j][l] = testWrong;
+
+      var testCorrect = document.createElement("div");
+      testCorrect.classList.add("test-correct");
+      testCorrect.classList.add("hidden-fast");
+      testCorrect.innerHTML = "Верно";
+      testContent.appendChild(testCorrect);
+      correctList[i][j][l] = testCorrect;
 
       var testWord = document.createElement("div");
       testWord.classList.add("test-word");
@@ -591,6 +601,7 @@ function closeTestpage() {
   );
   testActive = 0;
   unview(wrongList[sectionActive][groupActive][testActive]);
+  unview(correctList[sectionActive][groupActive][testActive]);
 }
 function openHomepage() {
   unviewFast(open_btn.children[0]);
@@ -688,20 +699,28 @@ for (let i = 0; i < sectionTitleList.length; i++) {
       for (let y = 0; y < transList[i][j][l].length; y++) {
         transList[i][j][l][y].addEventListener("click", () => {
           if (y == data[i].groups[j].tests[l].right) {
-            if (testActive < testList[sectionActive][groupActive].length - 1) {
-              unview(testList[sectionActive][groupActive][testActive]);
-              dotList[sectionActive][groupActive][testActive].classList.remove(
-                "dot-active"
-              );
-              testActive++;
-              dotList[sectionActive][groupActive][testActive].classList.add(
-                "dot-active"
-              );
-              view(testList[sectionActive][groupActive][testActive]);
-            } else {
-              openHomepage();
-              closeTestpage();
-            }
+            unviewFast(wrongList[sectionActive][groupActive][testActive]);
+            view(correctList[sectionActive][groupActive][testActive]);
+
+            setTimeout(function () {
+              if (
+                testActive <
+                testList[sectionActive][groupActive].length - 1
+              ) {
+                unview(testList[sectionActive][groupActive][testActive]);
+                dotList[sectionActive][groupActive][
+                  testActive
+                ].classList.remove("dot-active");
+                testActive++;
+                dotList[sectionActive][groupActive][testActive].classList.add(
+                  "dot-active"
+                );
+                view(testList[sectionActive][groupActive][testActive]);
+              } else {
+                openHomepage();
+                closeTestpage();
+              }
+            }, 500);
           } else {
             view(wrongList[sectionActive][groupActive][testActive]);
           }
