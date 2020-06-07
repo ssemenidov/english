@@ -1,5 +1,5 @@
 @import "vars.scss";
-.noun {
+.red {
   .main-group,
   p,
   .test-tran {
@@ -11,7 +11,7 @@
   }
 }
 
-.verb {
+.green {
   .main-group,
   p,
   .test-tran {
@@ -23,7 +23,7 @@
   }
 }
 
-.adj {
+.blue {
   .main-group,
   p,
   .test-tran {
@@ -60,21 +60,21 @@
   &-section-title {
     position: relative;
   }
-  &-section-titles .noun:after {
+  &-section-titles .red:after {
     content: url(../img/arrow1.svg);
     position: absolute;
 
     bottom: -18%;
     left: -2%;
   }
-  &-section-titles .verb:after {
+  &-section-titles .green:after {
     content: url(../img/arrow2.svg);
     position: absolute;
 
     bottom: -18%;
     right: -2%;
   }
-  &-section-titles .adj:after {
+  &-section-titles .blue:after {
     content: url(../img/arrow3.svg);
     position: absolute;
 

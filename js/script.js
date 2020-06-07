@@ -14,10 +14,12 @@ $(document).ready(function () {
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-
+function trans(answers = ["trans1", "trans2", "trans3"]) {
+  this.answers = answers;
+}
 function test(
   right = getRandomInt(3),
-  answers = ["trans1", "trans2", "trans3"],
+  answers = new trans().answers,
   word = "Word"
 ) {
   (this.right = right), (this.answers = answers), (this.word = word);
@@ -25,12 +27,25 @@ function test(
 function testgroup(title = "group", tests = [new test()]) {
   (this.title = title), (this.tests = tests);
 }
-function testsection(title = "section", groups = [new testgroup()]) {
-  (this.title = title), (this.groups = groups);
+function testsection(
+  title = "section",
+  theme = "red",
+  groups = [new testgroup()]
+) {
+  (this.title = title), (this.groups = groups), (this.theme = theme);
 }
-let sections = ["noun", "verb", "adj"];
-let data = [
-  new testsection("xxxxxxxxxx xxxxx ", [
+function testdata(title = "data", sections = [new testsection()]) {
+  (this.title = title), (this.sections = sections);
+}
+let sections = ["red", "green", "blue"];
+datainput = `
+{"title":"data","sections":[{"title":"xxxxxxxxxx xxxxx ","groups":[{"title":"groupgroup groupgroup group group","tests":[{"right":0,"answers":["xxxxxxxxxxxxxxxx","xxxxxxxxxxx xxxxxxxxxx","xxxxx"],"word":"XXXXXXX"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]}],"theme":"red"},{"title":"глаг","groups":[{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"}]}],"theme":"green"},{"title":"прил.","groups":[{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"}]},{"title":"group","tests":[{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":2,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":0,"answers":["trans1","trans2","trans3"],"word":"Word"},{"right":1,"answers":["trans1","trans2","trans3"],"word":"Word"}]}],"theme":"blue"}]}
+`;
+
+data = JSON.parse(datainput);
+
+let data1 = new testdata("data", [
+  new testsection("xxxxxxxxxx xxxxx ", "red", [
     new testgroup("groupgroup groupgroup group group", [
       new test(
         0,
@@ -156,7 +171,7 @@ let data = [
       new test(),
     ]),
   ]),
-  new testsection("глаг", [
+  new testsection("глаг", "green", [
     new testgroup("group", [
       new test(),
       new test(),
@@ -278,7 +293,7 @@ let data = [
       new test(),
     ]),
   ]),
-  new testsection("прил.", [
+  new testsection("прил.", "blue", [
     new testgroup("group", [
       new test(),
       new test(),
@@ -400,7 +415,13 @@ let data = [
       new test(),
     ]),
   ]),
-];
+]);
+
+data2 = JSON.stringify(data);
+for (let i = 0; i < data1.sections.length; i++) {
+  data.sections[i] = Object.assign(data.sections[i], data1.sections[i]);
+}
+
 let previewEndList = document.querySelectorAll(".preview-end");
 let previewNextList = document.querySelectorAll(".preview-next");
 let preview = document.querySelector(".preview");
@@ -431,14 +452,14 @@ let correctList = [];
 let transList = [];
 let dotList = [];
 
-for (let i = 0; i < data.length; i++) {
+for (let i = 0; i < data.sections.length; i++) {
   var sectiontitle = document.createElement("li");
   sectiontitle.classList.add("main-section-title");
   sectiontitle.classList.add(sections[i]);
 
   var p = document.createElement("p");
   sectiontitle.appendChild(p);
-  p.innerHTML = data[i].title;
+  p.innerHTML = data.sections[i].title;
   sectionTitles.appendChild(sectiontitle);
   sectionTitleList.push(sectiontitle);
   groupList.push([]);
@@ -450,10 +471,10 @@ for (let i = 0; i < data.length; i++) {
   transList.push([]);
   dotList.push([]);
 
-  for (let j = 0; j < data[i].groups.length; j++) {
+  for (let j = 0; j < data.sections[i].groups.length; j++) {
     var grouptitle = document.createElement("li");
     grouptitle.classList.add("main-group");
-    grouptitle.innerHTML = data[i].groups[j].title;
+    grouptitle.innerHTML = data.sections[i].groups[j].title;
     sectionList[i].appendChild(grouptitle);
     groupList[i].push(grouptitle);
 
@@ -471,7 +492,7 @@ for (let i = 0; i < data.length; i++) {
     dotList[i].push([]);
     transList[i].push([]);
 
-    for (let l = 0; l < data[i].groups[j].tests.length; l++) {
+    for (let l = 0; l < data.sections[i].groups[j].tests.length; l++) {
       var testContent = document.createElement("div");
       testContent.classList.add("test-content");
       testContent.classList.add("hidden");
@@ -497,7 +518,7 @@ for (let i = 0; i < data.length; i++) {
 
       var testWord = document.createElement("div");
       testWord.classList.add("test-word");
-      testWord.innerHTML = data[i].groups[j].tests[l].word;
+      testWord.innerHTML = data.sections[i].groups[j].tests[l].word;
       testContent.appendChild(testWord);
 
       var testTranList = document.createElement("ul");
@@ -505,10 +526,14 @@ for (let i = 0; i < data.length; i++) {
 
       transList[i][j].push([]);
 
-      for (let y = 0; y < data[i].groups[j].tests[l].answers.length; y++) {
+      for (
+        let y = 0;
+        y < data.sections[i].groups[j].tests[l].answers.length;
+        y++
+      ) {
         var testTran = document.createElement("ul");
         testTran.classList.add("test-tran");
-        testTran.innerHTML = data[i].groups[j].tests[l].answers[y];
+        testTran.innerHTML = data.sections[i].groups[j].tests[l].answers[y];
         testTranList.appendChild(testTran);
         transList[i][j][l][y] = testTran;
       }
@@ -702,7 +727,7 @@ for (let i = 0; i < sectionTitleList.length; i++) {
     for (let l = 0; l < testList[i][j].length; l++) {
       for (let y = 0; y < transList[i][j][l].length; y++) {
         transList[i][j][l][y].addEventListener("click", () => {
-          if (y == data[i].groups[j].tests[l].right) {
+          if (y == data.sections[i].groups[j].tests[l].right) {
             unviewFast(wrongList[sectionActive][groupActive][testActive]);
             view(correctList[sectionActive][groupActive][testActive]);
 
