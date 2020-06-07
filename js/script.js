@@ -25,40 +25,370 @@ function testsection(title, groups) {
 let sections = ["noun", "verb", "adj"];
 let data = [
   new testsection("сущ.", [
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
   ]),
   new testsection("глаг", [
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
   ]),
   new testsection("прил.", [
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
-    new testgroup("group", [new test(), new test()]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
+    new testgroup("group", [
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+      new test(),
+    ]),
   ]),
 ];
 let previewEndList = document.querySelectorAll(".preview-end");
@@ -73,6 +403,8 @@ let prof_page = document.querySelector(".profile");
 //ссылки на секций и из блоки на главной
 let sectionTitles = document.querySelector(".main-section-titles");
 let sectionList = document.querySelectorAll(".main-section");
+
+let testSectionList = document.querySelectorAll(".test-section");
 
 //создания контента и массивов ссылок на title секций и их группы
 let sectionTitleList = [];
@@ -97,14 +429,54 @@ for (let i = 0; i < data.length; i++) {
       data[i].title + " " + data[i].groups[j].title + String(j + 1);
     sectionList[i].appendChild(grouptitle);
     groupList[i].push(grouptitle);
+
+    var testGroup = document.createElement("li");
+    testGroup.classList.add("test-group");
+    testGroup.classList.add("hidden");
+
+    var testDots = document.createElement("ul");
+    testDots.classList.add("test-dots");
+    for (let l = 0; l < data[i].groups[j].tests.length; l++) {
+      var testContent = document.createElement("div");
+      testContent.classList.add("test-content");
+      testContent.classList.add("hidden");
+      testContent.innerHTML = `
+      <div class="test-wrong hidden-fast">Неверно</div>
+              <div class="test-word">Word</div>
+              <ul class="test-tran-list">
+                <li class="test-tran">перевод</li>
+                <li class="test-tran">перевод</li>
+                <li class="test-tran">перевод</li>
+              </ul>`;
+      var testDot = document.createElement("li");
+      testDot.classList.add("test-dot");
+      testDot.innerHTML = `<button></button>`;
+      testGroup.appendChild(testContent);
+      testDots.appendChild(testDot);
+    }
+    `
+    <ul class="test-dots">
+              <li class="test-dot dot-active"><button></button></li>
+              <li class="test-dot"><button></button></li>
+              <li class="test-dot"><button></button></li>
+              <li class="test-dot"><button></button></li>
+              <li class="test-dot"><button></button></li>
+              <li class="test-dot"><button></button></li>
+              <li class="test-dot"><button></button></li>
+              <li class="test-dot"><button></button></li>
+              <li class="test-dot"><button></button></li>
+              <li class="test-dot"><button></button></li>
+            </ul>`;
+    testGroup.appendChild(testDots);
+    testSectionList[i].appendChild(testGroup);
   }
+  //testSectionList[i].appendChild(testGroup);
 }
 
 let sectionActive = 0;
 let groupActive = 0;
 let testActive = 0;
 
-let testSectionList = document.querySelectorAll(".test-section");
 let testGroupList = [];
 let testList = [];
 let wrongList = [];
