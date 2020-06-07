@@ -711,6 +711,7 @@ for (let i = 0; i < sectionTitleList.length; i++) {
                 dotList[sectionActive][groupActive][
                   testActive
                 ].classList.remove("dot-active");
+                unview(correctList[sectionActive][groupActive][testActive]);
                 testActive++;
                 dotList[sectionActive][groupActive][testActive].classList.add(
                   "dot-active"
