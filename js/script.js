@@ -32,7 +32,11 @@ let sections = ["noun", "verb", "adj"];
 let data = [
   new testsection("сущ.", [
     new testgroup("group", [
-      new test(0, ["trans3", "trans2", "trans3"], "Word1"),
+      new test(
+        0,
+        ["xxxxxxxxxxxxxxxx", "xxxxxxxxxxx xxxxxxxxxx", "xxxxx"],
+        "XXXXXXX"
+      ),
       new test(),
       new test(),
       new test(),
@@ -412,7 +416,7 @@ let sectionList = document.querySelectorAll(".main-section");
 
 let testSectionList = document.querySelectorAll(".test-section");
 
-//создания контента и массивов ссылок на title секций и их группы
+//создания контента и массивов ссылок
 let sectionTitleList = [];
 let groupList = [];
 
@@ -510,32 +514,6 @@ for (let i = 0; i < data.length; i++) {
   }
 }
 
-// let sectionActive = 0;
-// let groupActive = 0;
-// let testActive = 0;
-
-// let testGroupList = [];
-// let testList = [];
-// let wrongList = [];
-// let transList = [];
-// let dotList = [];
-// for (let i = 0; i < testSectionList.length; i++) {
-//   testGroupList.push(testSectionList[i].querySelectorAll(".test-group"));
-//   testList.push([]);
-//   wrongList.push([]);
-//   transList.push([]);
-//   dotList.push([]);
-//   for (let j = 0; j < testGroupList[i].length; j++) {
-//     testList[i].push(testGroupList[i][j].querySelectorAll(".test-content"));
-//     wrongList[i].push(testGroupList[i][j].querySelectorAll(".test-wrong"));
-//     dotList[i].push(testGroupList[i][j].querySelectorAll(".test-dot"));
-//     transList[i].push([]);
-//     for (let l = 0; l < testList[i][j].length; l++) {
-//       transList[i][j].push(testList[i][j][l].querySelectorAll(".test-tran"));
-//     }
-//   }
-// }
-
 //появление исчезновение элементов
 function view(obj) {
   obj.classList.add("show");
@@ -613,6 +591,7 @@ function closeTestpage() {
     "dot-active"
   );
   testActive = 0;
+  unview(wrongList[sectionActive][groupActive][testActive]);
 }
 function openHomepage() {
   unviewFast(open_btn.children[0]);
