@@ -476,24 +476,20 @@ for (let i = 0; i < data.length; i++) {
       testContent.classList.add("test-content");
       testContent.classList.add("hidden");
       testList[i][j][l] = testContent;
-      var testStatus = document.createElement("div");
-      testStatus.classList.add("test-status");
 
       var testWrong = document.createElement("div");
       testWrong.classList.add("test-wrong");
       testWrong.classList.add("hidden-fast");
       testWrong.innerHTML = "Неверно";
+      testContent.appendChild(testWrong);
       wrongList[i][j][l] = testWrong;
 
       var testCorrect = document.createElement("div");
       testCorrect.classList.add("test-correct");
       testCorrect.classList.add("hidden-fast");
       testCorrect.innerHTML = "Верно";
+      testContent.appendChild(testCorrect);
       correctList[i][j][l] = testCorrect;
-
-      testStatus.appendChild(testWrong);
-      testStatus.appendChild(testCorrect);
-      testContent.appendChild(testStatus);
 
       var testWord = document.createElement("div");
       testWord.classList.add("test-word");
