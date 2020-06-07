@@ -11,9 +11,9 @@ $(document).ready(function () {
     dotsClass: "preview-dots",
   });
 });
-function test() {
+function test(right, answers, word) {
   (this.right = 0),
-    (this.answers = ["answer", "answer", "answer"]),
+    (this.answers = ["trans1", "trans2", "trans3"]),
     (this.word = "Word");
 }
 function testgroup(title, tests) {
@@ -410,6 +410,16 @@ let testSectionList = document.querySelectorAll(".test-section");
 let sectionTitleList = [];
 let groupList = [];
 
+let sectionActive = 0;
+let groupActive = 0;
+let testActive = 0;
+
+let testGroupList = [];
+let testList = [];
+let wrongList = [];
+let transList = [];
+let dotList = [];
+
 for (let i = 0; i < data.length; i++) {
   var sectiontitle = document.createElement("li");
   sectiontitle.classList.add("main-section-title");
@@ -422,6 +432,12 @@ for (let i = 0; i < data.length; i++) {
   sectionTitleList.push(sectiontitle);
   groupList.push([]);
 
+  testGroupList.push([]);
+  testList.push([]);
+  wrongList.push([]);
+  transList.push([]);
+  dotList.push([]);
+
   for (let j = 0; j < data[i].groups.length; j++) {
     var grouptitle = document.createElement("li");
     grouptitle.classList.add("main-group");
@@ -433,71 +449,86 @@ for (let i = 0; i < data.length; i++) {
     var testGroup = document.createElement("li");
     testGroup.classList.add("test-group");
     testGroup.classList.add("hidden");
+    testGroupList[i][j] = testGroup;
 
     var testDots = document.createElement("ul");
     testDots.classList.add("test-dots");
+
+    testList[i].push([]);
+    wrongList[i].push([]);
+    dotList[i].push([]);
+    transList[i].push([]);
+
     for (let l = 0; l < data[i].groups[j].tests.length; l++) {
       var testContent = document.createElement("div");
       testContent.classList.add("test-content");
       testContent.classList.add("hidden");
-      testContent.innerHTML = `
-      <div class="test-wrong hidden-fast">Неверно</div>
-              <div class="test-word">Word</div>
-              <ul class="test-tran-list">
-                <li class="test-tran">перевод</li>
-                <li class="test-tran">перевод</li>
-                <li class="test-tran">перевод</li>
-              </ul>`;
+      testList[i][j][l] = testContent;
+
+      var testWrong = document.createElement("div");
+      testWrong.classList.add("test-wrong");
+      testWrong.classList.add("hidden-fast");
+      testWrong.innerHTML = "Неверно";
+      testContent.appendChild(testWrong);
+      wrongList[i][j][l] = testWrong;
+
+      var testWord = document.createElement("div");
+      testWord.classList.add("test-word");
+      testWord.innerHTML = data[i].groups[j].tests[l].word;
+      testContent.appendChild(testWord);
+
+      var testTranList = document.createElement("ul");
+      testTranList.classList.add("test-tran-list");
+
+      transList[i][j].push([]);
+
+      for (let y = 0; y < data[i].groups[j].tests[l].answers.length; y++) {
+        var testTran = document.createElement("ul");
+        testTran.classList.add("test-tran");
+        testTran.innerHTML = data[i].groups[j].tests[l].answers[y];
+        testTranList.appendChild(testTran);
+        transList[i][j][l][y] = testTran;
+      }
+
+      testContent.appendChild(testTranList);
       var testDot = document.createElement("li");
       testDot.classList.add("test-dot");
       testDot.innerHTML = `<button></button>`;
       testGroup.appendChild(testContent);
       testDots.appendChild(testDot);
+      dotList[i][j][l] = testDot;
     }
-    `
-    <ul class="test-dots">
-              <li class="test-dot dot-active"><button></button></li>
-              <li class="test-dot"><button></button></li>
-              <li class="test-dot"><button></button></li>
-              <li class="test-dot"><button></button></li>
-              <li class="test-dot"><button></button></li>
-              <li class="test-dot"><button></button></li>
-              <li class="test-dot"><button></button></li>
-              <li class="test-dot"><button></button></li>
-              <li class="test-dot"><button></button></li>
-              <li class="test-dot"><button></button></li>
-            </ul>`;
     testGroup.appendChild(testDots);
+
     testSectionList[i].appendChild(testGroup);
   }
-  //testSectionList[i].appendChild(testGroup);
 }
 
-let sectionActive = 0;
-let groupActive = 0;
-let testActive = 0;
+// let sectionActive = 0;
+// let groupActive = 0;
+// let testActive = 0;
 
-let testGroupList = [];
-let testList = [];
-let wrongList = [];
-let transList = [];
-let dotList = [];
-for (let i = 0; i < testSectionList.length; i++) {
-  testGroupList.push(testSectionList[i].querySelectorAll(".test-group"));
-  testList.push([]);
-  wrongList.push([]);
-  transList.push([]);
-  dotList.push([]);
-  for (let j = 0; j < testGroupList[i].length; j++) {
-    testList[i].push(testGroupList[i][j].querySelectorAll(".test-content"));
-    wrongList[i].push(testGroupList[i][j].querySelectorAll(".test-wrong"));
-    dotList[i].push(testGroupList[i][j].querySelectorAll(".test-dot"));
-    transList[i].push([]);
-    for (let l = 0; l < testList[i][j].length; l++) {
-      transList[i][j].push(testList[i][j][l].querySelectorAll(".test-tran"));
-    }
-  }
-}
+// let testGroupList = [];
+// let testList = [];
+// let wrongList = [];
+// let transList = [];
+// let dotList = [];
+// for (let i = 0; i < testSectionList.length; i++) {
+//   testGroupList.push(testSectionList[i].querySelectorAll(".test-group"));
+//   testList.push([]);
+//   wrongList.push([]);
+//   transList.push([]);
+//   dotList.push([]);
+//   for (let j = 0; j < testGroupList[i].length; j++) {
+//     testList[i].push(testGroupList[i][j].querySelectorAll(".test-content"));
+//     wrongList[i].push(testGroupList[i][j].querySelectorAll(".test-wrong"));
+//     dotList[i].push(testGroupList[i][j].querySelectorAll(".test-dot"));
+//     transList[i].push([]);
+//     for (let l = 0; l < testList[i][j].length; l++) {
+//       transList[i][j].push(testList[i][j][l].querySelectorAll(".test-tran"));
+//     }
+//   }
+// }
 
 //появление исчезновение элементов
 function view(obj) {
@@ -672,7 +703,7 @@ for (let i = 0; i < sectionTitleList.length; i++) {
     for (let l = 0; l < testList[i][j].length; l++) {
       for (let y = 0; y < transList[i][j][l].length; y++) {
         transList[i][j][l][y].addEventListener("click", () => {
-          if (y == 1) {
+          if (y == data[i].groups[j].tests[l].right) {
             if (testActive < testList[sectionActive][groupActive].length - 1) {
               unview(testList[sectionActive][groupActive][testActive]);
               dotList[sectionActive][groupActive][testActive].classList.remove(
