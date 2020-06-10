@@ -528,12 +528,13 @@ function main() {
         testTranList.classList.add("test-tran-list");
 
         transList[i][j].push([]);
-
-        var testTran = document.createElement("ul");
-        testTran.classList.add("test-tran");
-        testTran.innerHTML = data.sections[i].groups[j].tests[l].tran;
-        testTranList.appendChild(testTran);
-        transList[i][j][l][0] = testTran;
+        for (let y = 0; y < 3; y++) {
+          var testTran = document.createElement("li");
+          testTran.classList.add("test-tran");
+          testTran.innerHTML = data.sections[i].groups[j].tests[l].tran;
+          testTranList.appendChild(testTran);
+          transList[i][j][l][y] = testTran;
+        }
         testContent.appendChild(testTranList);
 
         // for (
