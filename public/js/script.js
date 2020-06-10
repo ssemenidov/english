@@ -415,7 +415,7 @@ let data;
 console.log();
 start();
 async function start() {
-  const response = await fetch("/data");
+  const response = await fetch("../../data.json");
   data = await response.json();
   console.log("data receive");
 
