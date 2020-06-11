@@ -2,7 +2,7 @@
   "title": "data",
   "sections": [
     {
-      "title": "noun",
+      "title": "сущ",
       "theme": "red",
       "groups": [
         {
@@ -68,7 +68,7 @@
         {
           "title": "овощи",
           "tests": [
-            { "word": "Beans ", "tran": " фасоль;" },
+            { "word": "Beans ", "tran": " фасоль" },
             { "word": "Beet ", "tran": " свекла" },
             { "word": "Carrot ", "tran": " морковь" },
             { "word": "Cabbage ", "tran": " капуста" },
@@ -126,7 +126,7 @@
           ]
         },
         {
-          "title": "техника/мебель",
+          "title": "техника",
           "tests": [
             { "word": "Smartphone ", "tran": " смартфон" },
             { "word": "Tablet ", "tran": " планшет" },
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "title": "verb",
+      "title": "глаг",
       "theme": "green",
       "groups": [
         {
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "title": "adj",
+      "title": "прил",
       "theme": "blue",
       "groups": [
         {

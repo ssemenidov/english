@@ -85,6 +85,7 @@ getdata("data.json")
       correctList.push([]);
       transList.push([]);
       dotList.push([]);
+      dict.push([]);
 
       for (let j = 0; j < data.sections[i].groups.length; j++) {
         var grouptitle = document.createElement("li");
@@ -153,7 +154,7 @@ getdata("data.json")
             }
             testTranList.appendChild(testTran);
             transList[i][j][l][y] = testTran;
-            dict.push(data.sections[i].groups[j].tests[l].tran);
+            dict[i].push(data.sections[i].groups[j].tests[l].tran);
           }
 
           testContent.appendChild(testTranList);
@@ -203,13 +204,6 @@ getdata("data.json")
         unview(sectionList[i]);
       }
     }
-    function closetestspages(sectionActive, groupActive) {
-      for (let i = 1; i < testList[sectionActive][groupActive].length; i++) {
-        unview(testList[sectionActive][groupActive][i]);
-        dotList[sectionActive][groupActive][i].classList.remove("dot-active");
-      }
-    }
-
     //footer btns
     let footer = document.querySelector(".footer");
 
@@ -239,6 +233,7 @@ getdata("data.json")
       view(testGroupList[sectionActive][groupActive]);
       view(testList[sectionActive][groupActive][testActive]);
       dotList[sectionActive][groupActive][0].classList.add("dot-active");
+      testshuffle(sectionActive, groupActive);
     }
     function closeTestpage() {
       unview(testSectionList[sectionActive]);
@@ -306,7 +301,11 @@ getdata("data.json")
       profile_input.classList.add("profile-input--active");
     });
     profile_btn.addEventListener("click", () => {
-      name.innerHTML = profile_input.value;
+      if (profile_input.value != "") {
+        name.innerHTML = profile_input.value;
+      } else {
+        profile_input.value = name.innerHTML;
+      }
       profile_input.classList.remove("profile-input--active");
     });
 
@@ -336,11 +335,12 @@ getdata("data.json")
             transList[sectionActive][groupActive][l][y].innerHTML =
               ShuffleList[l].tran;
           } else {
-            let randomword = dict[getRandomInt(900)];
+            let randomword =
+              dict[sectionActive][getRandomInt(dict[sectionActive].length)];
             if (randomword == ShuffleList[l].tran) {
-              randomword = dict[getRandomInt(900)];
+              randomword = dict[getRandomInt(dict[sectionActive].length)];
             } else if (randomword == ShuffleList[l].tran) {
-              randomword = dict[getRandomInt(900)];
+              randomword = dict[getRandomInt(dict[sectionActive].length)];
             }
             transList[sectionActive][groupActive][l][y].innerHTML = randomword;
           }
@@ -357,8 +357,6 @@ getdata("data.json")
       });
       for (let j = 0; j < groupList[i].length; j++) {
         groupList[i][j].addEventListener("click", () => {
-          //unview(testGroupList[sectionActive][groupActive]);
-          closetestspages(sectionActive, groupActive);
           groupActive = j;
           testshuffle(sectionActive, groupActive);
           testActive = 0;
