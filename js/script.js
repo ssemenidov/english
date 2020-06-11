@@ -534,14 +534,10 @@ getdata("../data.json")
 
           transList[i][j].push([]);
 
-          for (
-            let y = 0;
-            y < data.sections[i].groups[j].tests[l].answers.length;
-            y++
-          ) {
+          for (let y = 0; y < 3; y++) {
             var testTran = document.createElement("ul");
             testTran.classList.add("test-tran");
-            testTran.innerHTML = data.sections[i].groups[j].tests[l].answers[y];
+            testTran.innerHTML = data.sections[i].groups[j].tests[l].tran;
             testTranList.appendChild(testTran);
             transList[i][j][l][y] = testTran;
           }
@@ -720,7 +716,7 @@ getdata("../data.json")
         for (let l = 0; l < testList[i][j].length; l++) {
           for (let y = 0; y < transList[i][j][l].length; y++) {
             transList[i][j][l][y].addEventListener("click", () => {
-              if (y == data.sections[i].groups[j].tests[l].right) {
+              if (y == 0) {
                 unviewFast(wrongList[sectionActive][groupActive][testActive]);
                 view(correctList[sectionActive][groupActive][testActive]);
 
