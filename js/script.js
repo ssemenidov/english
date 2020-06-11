@@ -338,9 +338,11 @@ getdata("data.json")
             let randomword =
               dict[sectionActive][getRandomInt(dict[sectionActive].length)];
             if (randomword == ShuffleList[l].tran) {
-              randomword = dict[getRandomInt(dict[sectionActive].length)];
+              randomword =
+                dict[sectionActive][getRandomInt(dict[sectionActive].length)];
             } else if (randomword == ShuffleList[l].tran) {
-              randomword = dict[getRandomInt(dict[sectionActive].length)];
+              randomword =
+                dict[sectionActive][getRandomInt(dict[sectionActive].length)];
             }
             transList[sectionActive][groupActive][l][y].innerHTML = randomword;
           }
