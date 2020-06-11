@@ -28,41 +28,41 @@ async function getdata(url) {
   const result = await fetch(url);
   data = await result.json();
 }
+let previewEndList = document.querySelectorAll(".preview-end");
+let previewNextList = document.querySelectorAll(".preview-next");
+let preview = document.querySelector(".preview");
+
+let header = document.querySelector(".header");
+//ссылки страниц
+let home_page = document.querySelector(".main");
+let test_page = document.querySelector(".test");
+let prof_page = document.querySelector(".profile");
+//ссылки на секций и из блоки на главной
+let sectionTitles = document.querySelector(".main-section-titles");
+let sectionList = document.querySelectorAll(".main-section");
+
+let testSectionList = document.querySelectorAll(".test-section");
+
+//создания контента и массивов ссылок
+let sectionTitleList = [];
+let groupList = [];
+
+let sectionActive = 0;
+let groupActive = 0;
+let testActive = 0;
+
+let testGroupList = [];
+let testList = [];
+let wrongList = [];
+let wordList = [];
+let correctList = [];
+let transList = [];
+let dotList = [];
+let dict = [];
 
 getdata("data.json")
   .then((result) => {
     console.log("yay");
-    console.log(data);
-
-    let previewEndList = document.querySelectorAll(".preview-end");
-    let previewNextList = document.querySelectorAll(".preview-next");
-    let preview = document.querySelector(".preview");
-
-    let header = document.querySelector(".header");
-    //ссылки страниц
-    let home_page = document.querySelector(".main");
-    let test_page = document.querySelector(".test");
-    let prof_page = document.querySelector(".profile");
-    //ссылки на секций и из блоки на главной
-    let sectionTitles = document.querySelector(".main-section-titles");
-    let sectionList = document.querySelectorAll(".main-section");
-
-    let testSectionList = document.querySelectorAll(".test-section");
-
-    //создания контента и массивов ссылок
-    let sectionTitleList = [];
-    let groupList = [];
-
-    let sectionActive = 0;
-    let groupActive = 0;
-    let testActive = 0;
-
-    let testGroupList = [];
-    let testList = [];
-    let wrongList = [];
-    let correctList = [];
-    let transList = [];
-    let dotList = [];
 
     //generated and querry
 
@@ -81,6 +81,7 @@ getdata("data.json")
       testGroupList.push([]);
       testList.push([]);
       wrongList.push([]);
+      wordList.push([]);
       correctList.push([]);
       transList.push([]);
       dotList.push([]);
@@ -102,6 +103,7 @@ getdata("data.json")
 
         testList[i].push([]);
         wrongList[i].push([]);
+        wordList[i].push([]);
         correctList[i].push([]);
         dotList[i].push([]);
         transList[i].push([]);
@@ -134,18 +136,24 @@ getdata("data.json")
           testWord.classList.add("test-word");
           testWord.innerHTML = data.sections[i].groups[j].tests[l].word;
           testContent.appendChild(testWord);
+          wordList[i][j][l] = testWord;
 
           var testTranList = document.createElement("ul");
           testTranList.classList.add("test-tran-list");
 
           transList[i][j].push([]);
-
+          data.sections[i].groups[j].tests[l].right = getRandomInt(3);
           for (let y = 0; y < 3; y++) {
             var testTran = document.createElement("ul");
             testTran.classList.add("test-tran");
-            testTran.innerHTML = data.sections[i].groups[j].tests[l].tran;
+            if (y == data.sections[i].groups[j].tests[l].right) {
+              testTran.innerHTML = data.sections[i].groups[j].tests[l].tran;
+            } else {
+              testTran.innerHTML = "______";
+            }
             testTranList.appendChild(testTran);
             transList[i][j][l][y] = testTran;
+            dict.push(data.sections[i].groups[j].tests[l].tran);
           }
 
           testContent.appendChild(testTranList);
@@ -303,6 +311,42 @@ getdata("data.json")
     });
 
     //eventlisteners
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+    function testshuffle(sectionActive, groupActive) {
+      ShuffleList = data.sections[sectionActive].groups[
+        groupActive
+      ].tests.slice();
+
+      shuffle(ShuffleList);
+      for (let l = 0; l < testList[sectionActive][groupActive].length; l++) {
+        wordList[sectionActive][groupActive][l].innerHTML = ShuffleList[l].word;
+        data.sections[sectionActive].groups[groupActive].tests[
+          l
+        ].right = getRandomInt(3);
+
+        for (let y = 0; y < 3; y++) {
+          if (
+            y == data.sections[sectionActive].groups[groupActive].tests[l].right
+          ) {
+            transList[sectionActive][groupActive][l][y].innerHTML =
+              ShuffleList[l].tran;
+          } else {
+            let randomword = dict[getRandomInt(900)];
+            if (randomword == ShuffleList[l].tran) {
+              randomword = dict[getRandomInt(900)];
+            } else if (randomword == ShuffleList[l].tran) {
+              randomword = dict[getRandomInt(900)];
+            }
+            transList[sectionActive][groupActive][l][y].innerHTML = randomword;
+          }
+        }
+      }
+    }
     for (let i = 0; i < sectionTitleList.length; i++) {
       sectionTitleList[i].addEventListener("click", () => {
         unview(testSectionList[sectionActive]);
@@ -316,13 +360,19 @@ getdata("data.json")
           //unview(testGroupList[sectionActive][groupActive]);
           closetestspages(sectionActive, groupActive);
           groupActive = j;
+          testshuffle(sectionActive, groupActive);
           testActive = 0;
           openTestpage();
         });
         for (let l = 0; l < testList[i][j].length; l++) {
           for (let y = 0; y < transList[i][j][l].length; y++) {
             transList[i][j][l][y].addEventListener("click", () => {
-              if (y == 0) {
+              if (
+                y ==
+                data.sections[sectionActive].groups[groupActive].tests[
+                  testActive
+                ].right
+              ) {
                 unviewFast(wrongList[sectionActive][groupActive][testActive]);
                 view(correctList[sectionActive][groupActive][testActive]);
 
