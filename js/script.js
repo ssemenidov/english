@@ -423,7 +423,7 @@ async function getdata(url) {
   data = await result.json();
 }
 
-getdata("../data.json")
+getdata("data.json")
   .then((result) => {
     console.log("yay");
     console.log(data);
