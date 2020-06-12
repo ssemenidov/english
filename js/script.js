@@ -49,6 +49,7 @@ let groupList = [];
 
 let sectionActive = 0;
 let groupActive = 0;
+let testActiveList = [];
 let testActive = 0;
 
 let testGroupList = [];
@@ -65,7 +66,14 @@ getdata("data.json")
     console.log("yay");
 
     //generated and querry
-
+    for (let i = 0; i < data.sections.length; i++) {
+      dict.push([]);
+      for (let j = 0; j < data.sections[i].groups.length; j++) {
+        for (let l = 0; l < data.sections[i].groups[j].tests.length; l++) {
+          dict[i].push(data.sections[i].groups[j].tests[l].tran);
+        }
+      }
+    }
     for (let i = 0; i < data.sections.length; i++) {
       var sectiontitle = document.createElement("li");
       sectiontitle.classList.add("main-section-title");
@@ -80,12 +88,13 @@ getdata("data.json")
 
       testGroupList.push([]);
       testList.push([]);
+      testActiveList.push([]);
       wrongList.push([]);
       wordList.push([]);
       correctList.push([]);
       transList.push([]);
       dotList.push([]);
-      dict.push([]);
+      //dict.push([]);
 
       for (let j = 0; j < data.sections[i].groups.length; j++) {
         var grouptitle = document.createElement("li");
@@ -101,6 +110,8 @@ getdata("data.json")
 
         var testDots = document.createElement("ul");
         testDots.classList.add("test-dots");
+
+        testActiveList[i][j] = 0;
 
         testList[i].push([]);
         wrongList[i].push([]);
@@ -150,12 +161,23 @@ getdata("data.json")
             if (y == data.sections[i].groups[j].tests[l].right) {
               testTran.innerHTML = data.sections[i].groups[j].tests[l].tran;
             } else {
-              testTran.innerHTML = "______";
+              let randomword =
+                dict[sectionActive][getRandomInt(dict[sectionActive].length)];
+              if (randomword == data.sections[i].groups[j].tests[l].tran) {
+                randomword =
+                  dict[sectionActive][getRandomInt(dict[sectionActive].length)];
+              } else if (
+                randomword == data.sections[i].groups[j].tests[l].tran
+              ) {
+                randomword =
+                  dict[sectionActive][getRandomInt(dict[sectionActive].length)];
+              }
+              testTran.innerHTML = randomword;
             }
             testTranList.appendChild(testTran);
             transList[i][j][l][y] = testTran;
-            dict[i].push(data.sections[i].groups[j].tests[l].tran);
           }
+          //dict[i].push(data.sections[i].groups[j].tests[l].tran);
 
           testContent.appendChild(testTranList);
           var testDot = document.createElement("li");
@@ -231,20 +253,23 @@ getdata("data.json")
 
       view(testSectionList[sectionActive]);
       view(testGroupList[sectionActive][groupActive]);
+      testActive = testActiveList[sectionActive][groupActive];
       view(testList[sectionActive][groupActive][testActive]);
-      dotList[sectionActive][groupActive][0].classList.add("dot-active");
-      testshuffle(sectionActive, groupActive);
+      dotList[sectionActive][groupActive][testActive].classList.add(
+        "dot-active"
+      );
+      //testshuffle(sectionActive, groupActive);
     }
     function closeTestpage() {
       unview(testSectionList[sectionActive]);
       unview(testGroupList[sectionActive][groupActive]);
-      unview(testList[sectionActive][groupActive][testActive]);
-      dotList[sectionActive][groupActive][testActive].classList.remove(
-        "dot-active"
-      );
-      testActive = 0;
-      unview(wrongList[sectionActive][groupActive][testActive]);
-      unview(correctList[sectionActive][groupActive][testActive]);
+      // unview(testList[sectionActive][groupActive][testActive]);
+      // dotList[sectionActive][groupActive][testActive].classList.remove(
+      //   "dot-active"
+      // );
+      // testActive = 0;
+      // unview(wrongList[sectionActive][groupActive][testActive]);
+      // unview(correctList[sectionActive][groupActive][testActive]);
     }
     function openHomepage() {
       unviewFast(open_btn.children[0]);
@@ -361,12 +386,13 @@ getdata("data.json")
         groupList[i][j].addEventListener("click", () => {
           groupActive = j;
           testshuffle(sectionActive, groupActive);
-          testActive = 0;
+
           openTestpage();
         });
         for (let l = 0; l < testList[i][j].length; l++) {
           for (let y = 0; y < transList[i][j][l].length; y++) {
             transList[i][j][l][y].addEventListener("click", () => {
+              testActive = testActiveList[sectionActive][groupActive];
               if (
                 y ==
                 data.sections[sectionActive].groups[groupActive].tests[
@@ -377,21 +403,23 @@ getdata("data.json")
                 view(correctList[sectionActive][groupActive][testActive]);
 
                 setTimeout(function () {
+                  unview(testList[sectionActive][groupActive][testActive]);
+                  dotList[sectionActive][groupActive][
+                    testActive
+                  ].classList.remove("dot-active");
+                  unview(correctList[sectionActive][groupActive][testActive]);
                   if (
                     testActive <
                     testList[sectionActive][groupActive].length - 1
                   ) {
-                    unview(testList[sectionActive][groupActive][testActive]);
-                    dotList[sectionActive][groupActive][
-                      testActive
-                    ].classList.remove("dot-active");
-                    unview(correctList[sectionActive][groupActive][testActive]);
                     testActive++;
+                    testActiveList[sectionActive][groupActive]++;
                     dotList[sectionActive][groupActive][
                       testActive
                     ].classList.add("dot-active");
                     view(testList[sectionActive][groupActive][testActive]);
                   } else {
+                    testActiveList[sectionActive][groupActive] = 0;
                     openHomepage();
                     closeTestpage();
                   }
